@@ -1,0 +1,25 @@
+<!doctype html>
+<html ng-app="myapp">
+	<head>
+		<title>Notes application</title>
+		<script src="https://code.angularjs.org/1.3.9/angular.js"></script>
+		<script src="https://code.angularjs.org/1.3.9/angular-resource.js"></script>
+    		<script src="notes.js"></script>
+
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	</head>
+
+	<body ng-controller="NotesController">
+		Your name: <input ng-models="username"> <button ng-click="update()" ng-enter="update()">update</button>
+		<div ng-repeat="note in notes" style="background-color:#EEE;padding:5px;width:300px;border:1px solid black;margin:10px;'">
+			<p>The ID is {{note.id}}</p>
+			<p>The content is {{note.text}}</p>
+		</div>
+		Add note:<br>
+		<textarea rows="10" cols="50" ng-models="text"></textarea>
+		<button ng-click="add()">Add note</button>
+
+		<my-app>loading...</my-app>
+
+	</body>
+</html>

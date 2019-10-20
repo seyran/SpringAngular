@@ -1,0 +1,259 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>client</artifactId>
+  <version>${global.version}</version>
+  <name>client</name>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>${global.groupId}</groupId>
+    <artifactId>${global.artifactId}</artifactId>
+    <version>${global.version}</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+
+  <properties>
+    <node.version>v6.10.3</node.version>
+    <npm.version>3.10.10</npm.version>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>dev</id>
+                <!--<id>gulp build</id>-->
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+
+                <!-- optional: the default phase is "generate-resources" -->
+                <!--<phase>generate-resources</phase>-->
+                <phase>package</phase>
+
+                <configuration>
+                  <!-- optional: if not specified, it will run gulp's default
+                  task (and you can remove this whole <configuration> section.) -->
+                  <arguments>run build:dev</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>deploy</id>
+                <!--<id>gulp deploy</id>-->
+                <goals>
+                  <!--<goal>gulp</goal>-->
+                  <goal>npm</goal>
+                </goals>
+
+                <!-- optional: the default phase is "generate-resources" -->
+                <!--<phase>generate-resources</phase>-->
+                <phase>package</phase>
+
+                <configuration>
+                  <!-- optional: if not specified, it will run gulp's default
+                  task (and you can remove this whole <configuration> section.) -->
+                  <arguments>run build:prod</arguments>
+                  <!--<arguments>deploy</arguments>-->
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+      </dependencies>
+    </profile>
+  </profiles>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <!-- Use the latest released version:
+        https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
+        <version>1.4</version>
+
+        <!-- optional -->
+        <configuration>
+          <workingDirectory>${basedir}/</workingDirectory>
+          <srcdir>${basedir}/src</srcdir>
+          <!--<workingDirectory>src/main/frontend</workingDirectory>-->
+          <!--<nodeVersion>v4.4.5</nodeVersion>-->
+          <nodeVersion>${node.version}</nodeVersion>
+          <npmVersion>${npm.version}</npmVersion>
+          <!-- optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ -->
+          <!--<downloadRoot>http://myproxy.example.org/nodejs/dist/</downloadRoot>-->
+
+          <!--<nodeDownloadRoot>https://nodejs.org/nodejs/dist/</nodeDownloadRoot>-->
+          <nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
+          <npmDownloadRoot>https://registry.npmjs.org/npm/-/</npmDownloadRoot>
+
+          <!-- optional: where to install node and npm. Defaults to the working directory -->
+          <installDirectory>target</installDirectory>
+          <!--<installDirectory>node</installDirectory>-->
+          <!--<installDirectory>${node.app.dir}</installDirectory>-->
+          <environmentVariables>
+            <!--<NPM_CONFIG_PREFIX>${node.app.dir}/node_modules</NPM_CONFIG_PREFIX>-->
+            <!--<NPM_CONFIG_PREFIX>${node.app.dir}</NPM_CONFIG_PREFIX>-->
+            <NPM_CONFIG_PROGRESS>false</NPM_CONFIG_PROGRESS>
+            <NPM_CONFIG_CACHE-MIN>720000</NPM_CONFIG_CACHE-MIN>
+            <NPM_CONFIG_CACHE_MIN>720000</NPM_CONFIG_CACHE_MIN>
+          </environmentVariables>
+
+          <npmInheritsProxyConfigFromMaven>true</npmInheritsProxyConfigFromMaven>
+        </configuration>
+        <executions>
+          <execution>
+            <!-- optional: you don't really need execution ids,
+            but it looks nice in your build log. -->
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <!-- optional: default phase is "generate-resources" -->
+            <phase>initialize</phase>
+            <!--<phase>generate-resources</phase>-->
+          </execution>
+          <execution>
+            <id>npm build</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+
+            <!-- optional: default phase is "generate-resources" -->
+            <phase>prepare-package</phase>
+            <!--<phase>generate-resources</phase>-->
+            <configuration>
+              <!-- optional: The default argument is actually
+              "install", so unless you need to run some other npm command,
+              you can remove this whole <configuration> section.
+              -->
+              <arguments>run build</arguments>
+              <!--<arguments>install</arguments>-->
+              <!--<arguments>install -g</arguments>-->
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm config</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>initialize</phase>
+            <configuration>
+              <arguments>set progress=false</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>initialize</phase>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+          <!--                   <execution>
+                                 <id>npm clean</id>
+                                 <goals>
+                                     <goal>npm</goal>
+                                 </goals>
+                                 <phase>clean</phase>
+                                 <configuration>
+                                     <arguments>run clean</arguments>
+                                     &lt;!&ndash;<arguments>run clean:dist</arguments>&ndash;&gt;
+                                 </configuration>
+                             </execution>-->
+          <!-- <execution>
+               <id>npm test</id>
+               <goals>
+                   <goal>npm</goal>
+               </goals>
+               <phase>test</phase>
+               <configuration>
+                   <arguments>run test</arguments>
+               </configuration>
+           </execution>-->
+          <!--<execution>
+              <id>bower install</id>
+              <goals>
+                  <goal>bower</goal>
+              </goals>
+              <configuration>
+                  <arguments>install</arguments>
+              </configuration>
+          </execution>-->
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>auto-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+            <configuration>
+              <filesets>
+                <fileset>
+                  <directory>dist</directory>
+                  <includes>
+                    <include>**/*</include>
+                    <!--<include>**/*.*</include>-->
+                    <!--<include>**/*.tmp</include>
+                    <include>**/*.log</include>-->
+                  </includes>
+                  <!--<excludes>
+                      <exclude>**/important.log</exclude>
+                      <exclude>**/another-important.log</exclude>
+                  </excludes>-->
+                  <followSymlinks>false</followSymlinks>
+                </fileset>
+                <fileset>
+                  <directory>node_modules</directory>
+                  <includes>
+                    <include>**/*</include>
+                  </includes>
+                </fileset>
+                <fileset>
+                  <directory>typings</directory>
+                  <includes>
+                    <include>**/*</include>
+                  </includes>
+                </fileset>
+              </filesets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

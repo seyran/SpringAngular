@@ -1,0 +1,58 @@
+{
+  "name": "angular2-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server --c lite-server.json --browser chrome --open local",
+    "typings": "typings",
+    "postinstall": "typings install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update_lib": "ncu -u",
+    "prebuild": "npm install",
+
+    "build": "gulp",
+    "deploy": "gulp deploy",
+    "dev": "gulp dev",
+    "gulp_server": "gulp dev-server",
+
+    "clean": "npm cache clean && npm run rimraf -- node_modules doc typings coverage dist",
+    "clean:dist": "npm run rimraf -- dist",
+    "preclean:install": "npm run clean",
+    "clean:install": "npm set progress=false && npm install",
+    "preclean:start": "npm run clean",
+    "clean:start": "npm start"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "2.0.0-beta.15",
+    "bootstrap": "^3.3.6",
+    "es6-shim": "^0.35.0",
+    "jquery": "^2.2.3",
+    "reflect-metadata": "0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "systemjs": "0.19.26",
+    "zone.js": "0.6.11"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "lite-server": "^2.2.0",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12",
+    "tslint": "^3.7.4",
+
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
+    "path": "^0.12.7",
+    "ts-loader": "^0.8.2",
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "keywords": [],
+  "author": ""
+}

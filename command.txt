@@ -1,0 +1,35 @@
+-Xlint:all,-options,-path
+
+mvn spring-boot:run
+
+mvn dependency:analyze
+
+mvn dependency:resolve
+mvn dependency:resolve-plugins
+
+mvn dependency:purge-local-repository
+
+mvn dependency:purge-local-repository clean install
+
+mvn versions:display-dependency-updates
+
+mvn versions:display-plugin-updates
+
+mvn versions:display-property-updates
+
+Display Dependency Updates
+    $ mvn versions:display-dependency-updates
+Display Plugin Updates
+    $ mvn versions:display-plugin-updates
+Display Dependency Tree
+    $ mvn dependency:tree -Ddetail
+Display Dependency List
+    $ mvn dependency:list
+Display Effective POM
+    $ mvn help:effective-pom
+Display Project Settings
+    $ mvn help:effective-settings
+Display System and Environment Variables
+    $ mvn help:system
+Display Build Class Path
+    $ mvn dependency:build-classpath

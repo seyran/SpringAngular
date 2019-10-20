@@ -1,0 +1,63 @@
+npm-check-updates
+npm install -g npm-check-updates
+ncu
+ncu -u
+
+npm --proxy http://"abalabanovsmk:etOA4yDi"@proxy.main.smk:3128 install
+npm cache clean
+npm install -g npm
+
+typings search tape
+
+npm config set proxy "http://abalabanovsmk:etOA4yDi@proxy.main.smk:3128/"
+npm --proxy http://"abalabanovsmk:etOA4yDi"@proxy.main.smk:3128" install
+
+npm --proxy http://"username:password"@proxy...:port_here installncu -u
+
+
+npm install -g npm-check
+npm-check
+
+npm install typings webpack-dev-server rimraf webpack -g
+
+server
+
+# development
+npm run server
+# production
+npm run build:prod
+npm run server:prod
+
+build files
+
+# development
+npm run build:dev
+# production
+npm run build:prod
+
+
+hot module replacement
+
+npm run server:dev:hmr
+watch and build files
+
+npm run watch
+run tests
+
+npm run test
+watch and run our tests
+
+npm run watch:test
+run end-to-end tests
+
+# make sure you have your server running in another terminal
+npm run e2e
+run webdriver (for end-to-end)
+
+npm run webdriver:update
+npm run webdriver:start
+run Protractor's elementExplorer (for end-to-end)
+
+npm run webdriver:start
+# in another terminal
+npm run e2e:live

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+    <!--<Set name="war"><Property name="jetty.webapps" default="."/>/benchmark.war</Set>
+    <Set name="contextPath">/benchmark</Set>-->
+    <!--<Set name="autoPreconfigure">true</Set>-->
+    <Call name="setAttribute">
+        <Arg>org.eclipse.jetty.server.webapp.WebInfIncludeJarPattern</Arg>
+        <Arg>.*/spring-security[^/]*\.jar$|.*/spring-web[^/]*\.jar$|.*/classes/.*</Arg>
+
+        <!--<Arg>^$</Arg>-->
+        <!--<Arg>.*/.*jsp-api-[^/]\.jar$|./.*jsp-[^/]\.jar$|./.*taglibs[^/]*\.jar$</Arg>-->
+        <!--<Arg>.*/.*foo-api-[^/]\.jar$|./.*bar-[^/]\.jar$|./.*wibble[^/]*\.jar$</Arg>-->
+    </Call>
+<!--    <Call class="java.lang.System"  name="setProperty">
+        <Arg>org.apache.jasper.compiler.disablejsr199</Arg>
+        <Arg>true</Arg>
+    </Call>-->
+</Configure>
+<!--<Configure class="org.eclipse.jetty.webapp.WebAppContext">-->
+

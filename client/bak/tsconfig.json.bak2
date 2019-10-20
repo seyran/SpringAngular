@@ -1,0 +1,24 @@
+{
+  "compileOnSave": true,
+
+  "compilerOptions": {
+    "outDir": "build",
+    "outFile": "build/all.js",
+    "rootDir": "app",
+    "sourceRoot": "app",
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "node_modules",
+    "typings/main",
+    "typings/main.d.ts"
+  ]
+}

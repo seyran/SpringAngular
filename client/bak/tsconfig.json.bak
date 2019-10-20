@@ -1,0 +1,30 @@
+{
+  "compileOnSave": true,
+
+  "compilerOptions": {
+    "rootDir": "app",
+    "sourceRoot": "app",
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "noImplicitAny": false,
+    "outDir":"build/",
+    "outFile": "build/all.js",
+    "declaration": true
+  },
+  "exclude": [
+    "node_modules",
+    "typings/browser.d.ts",
+    "typings/browser"
+  ],
+  "include": [
+    "client/*.ts",
+    "client/**/*.ts",
+    "client/**/**/*.ts"
+  ]
+}
